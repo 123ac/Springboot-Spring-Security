@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/security?serverTimezone=Asia/Shanghai&allowMultiQueries=true&characterEncoding=utf-8
+    password: root
+    username: root
+  devtools:
+    restart:
+      additional-paths: src/main/java
+      enabled: true
+  thymeleaf:
+    cache: true
+
+logging:
+  level:
+    com:
+      hjl:
+        springsecurity:
+          dao: debug
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
