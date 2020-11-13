@@ -1,15 +1,14 @@
 package com.hjl.springsecurity.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 
 /**
  * @Author: hjl
@@ -24,9 +23,18 @@ public class LoginController {
     private Logger logger= LoggerFactory.getLogger(LoginController.class);
 
     @RequestMapping("/")
+    @SystemLogController(description = "主页")
     public String showHome(){
         String name= SecurityContextHolder.getContext().getAuthentication().getName();
         logger.info("当前登录用户:{}",name);
+        return "home.html";
+    }
+
+
+    @RequestMapping("/test/{Id}/{name}")
+    @SystemLogController(description = "测试方法")
+    public String test(@PathVariable("Id")String Id,@PathVariable("name")String name){
+        logger.info("测试参数{}-{}",Id,name);
         return "home.html";
     }
 

@@ -1,7 +1,6 @@
 package com.hjl.springsecurity.controller;
 
 import com.hjl.springsecurity.entity.SysUser;
-import com.hjl.springsecurity.entity.SysUserRole;
 import com.hjl.springsecurity.service.SysUserRoleService;
 import com.hjl.springsecurity.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,23 +22,7 @@ public class RegController {
     @RequestMapping("/register")
     public String Register(SysUser sysUser){
         System.out.println("name ;"+sysUser.getName()+"  pwd:"+sysUser.getPassword());
-        SysUser user=sysUserService.selectByName(sysUser.getName());
-        if (user !=null){
-            System.out.println("用户名称重复");
-            return "500";
-        }
-        BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
-        String Password = bcryptPasswordEncoder.encode(sysUser.getPassword());//加密
-        sysUser.setPassword(Password);
-        System.out.println("加密pwd;"+ sysUser.getPassword());
-        Boolean in=sysUserService.insertUser(sysUser);
-        SysUser user1=sysUserService.selectByName(sysUser.getName());
-        //给用户默认user权限
-        SysUserRole sysUserRole=new SysUserRole();
-        sysUserRole.setUserId(user1.getId());
-        sysUserRole.setRoleId(2);//ROLE_USER：2
-        Boolean is=sysUserRoleService.insertUserRole(sysUserRole);
-        return "login";
+        return sysUserService.Register(sysUser);
     }
 
     @RequestMapping("/modifyPass")

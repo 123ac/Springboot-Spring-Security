@@ -13,6 +13,10 @@ spring:
       enabled: true
   thymeleaf:
     cache: true
+  #切面启用
+  aop:
+    proxy-target-class: true
+    auto: true
 
 logging:
   level:
@@ -23,3 +27,4 @@ logging:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mapper/*.xml

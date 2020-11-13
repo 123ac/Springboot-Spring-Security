@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hjl.springsecurity.dao.SysLogMapper">
+  <!--<resultMap id="BaseResultMap" type="com.hjl.springsecurity.entity.SysLog">-->
+    <!--<id column="id" jdbcType="BIGINT" property="id" />-->
+    <!--<result column="uri" jdbcType="VARCHAR" property="uri" />-->
+    <!--<result column="method" jdbcType="VARCHAR" property="method" />-->
+    <!--<result column="MethodDescribe" jdbcType="VARCHAR" property="MethodDescribe" />-->
+    <!--<result column="params" jdbcType="VARCHAR" property="params" />-->
+    <!--<result column="username" jdbcType="VARCHAR" property="username" />-->
+    <!--<result column="ip" jdbcType="VARCHAR" property="ip" />-->
+    <!--<result column="create_date" jdbcType="VARCHAR" property="create_date"/>-->
+      <!--<result column="browser" jdbcType="VARCHAR" property="browser"/>-->
+  <!--</resultMap>-->
+<insert id="InsertSysLog"  parameterType="com.hjl.springsecurity.entity.SysLog">
+       INSERT INTO sys_log(uri,method,MethodDescribe,params,username,ip,create_date,browser) VALUES(#{uri},#{method},#{MethodDescribe},#{params},#{username},#{ip},#{createDate},#{browser});
+</insert>
+</mapper>

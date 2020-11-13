@@ -8,11 +8,10 @@ import com.hjl.springsecurity.entity.SysUser;
  * @Date: 2020/11/10 0010 14:50
  */
 public interface SysUserService {
-     SysUser selectById(Integer id);
 
      SysUser selectByName(String name);
 
-     Boolean insertUser(SysUser sysUser);
-
      Integer modifyPass(String name,String password);
+
+     String Register(SysUser sysUser);
 }
