@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 // 如果有允许匿名的url，填在下面
-                .antMatchers("/regis","/register").permitAll()
+                .antMatchers("/regis","/register","/test").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 // 设置登陆页

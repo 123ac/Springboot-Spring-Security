@@ -3,6 +3,8 @@ package com.hjl.springsecurity.dao;
 import com.hjl.springsecurity.entity.SysUser;
 import org.apache.ibatis.annotations.*;
 
+import java.util.*;
+
 /**
  * @Author: hjl
  * @Date: 2020/11/10 0010 14:48
@@ -14,6 +16,9 @@ public interface SysUserMapper {
 
     @Select("SELECT * FROM sys_user WHERE name = #{name}")
     SysUser selectByName(String name);
+
+    @Select("SELECT * FROM sys_user ")
+    List<SysUser> query();
 
     @Insert("insert into sys_user(name,password) values(#{name},#{password})")
     Boolean insertUser(SysUser sysUser);

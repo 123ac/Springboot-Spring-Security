@@ -1,14 +1,23 @@
 package com.hjl.springsecurity.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.hjl.springsecurity.dao.SysUserMapper;
+import com.hjl.springsecurity.entity.SysUser;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.*;
 
 /**
  * @Author: hjl
@@ -19,8 +28,12 @@ import org.springframework.web.servlet.ModelAndView;
  * 注解 @PreAuthorize 用于判断用户是否有指定权限，没有就不能访问
  */
 @Controller
+@CrossOrigin //跨域
 public class LoginController {
     private Logger logger= LoggerFactory.getLogger(LoginController.class);
+
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
     @RequestMapping("/")
     @SystemLogController(description = "主页")
@@ -30,6 +43,19 @@ public class LoginController {
         return "home.html";
     }
 
+    @RequestMapping("/test")
+    @ResponseBody
+    public String  test(@Param("name")String name){
+        System.out.println("name:"+name);
+        HashMap<String,Object> map=new HashMap<>();
+        map.put("code",200);
+        map.put("data","成功");
+
+        List<SysUser> sysUser=sysUserMapper.query();
+        map.put("items",sysUser);
+        String jsonString = JSONObject.toJSONString(map);
+        return jsonString;
+    }
 
     @RequestMapping("/test/{Id}/{name}")
     @SystemLogController(description = "测试方法")
